@@ -3,6 +3,8 @@ package com.nt.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.nt.entity.Politician;
@@ -21,6 +23,17 @@ public class PoliticianImplService implements IpoliticianService {
 		politicianRepository.deleteAllByIdInBatch(ids);
 		
 		return list.size()+"Records are deleted!!";
+	}
+
+	@Override
+	public List<Politician> showPolitionsList(Politician exPolitician, boolean ascOrder, String... prop) {
+		//prepare the Sort object
+		Sort sort = Sort.by(ascOrder?Sort.Direction.ASC:Sort.Direction.DESC,prop);
+		//create the Example object
+		Example<Politician> example = Example.of(exPolitician);
+		//use the repo
+		List<Politician> list = politicianRepository.findAll(example, sort);
+		return list;
 	}
 
 }
