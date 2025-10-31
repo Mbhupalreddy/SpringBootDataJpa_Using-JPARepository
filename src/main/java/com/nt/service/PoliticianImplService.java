@@ -35,5 +35,10 @@ public class PoliticianImplService implements IpoliticianService {
 		List<Politician> list = politicianRepository.findAll(example, sort);
 		return list;
 	}
+	@Override
+	public Politician findPoliticianById(Integer id) {
+		 return politicianRepository.getReferenceById(id);
+		
+	}
 
 }

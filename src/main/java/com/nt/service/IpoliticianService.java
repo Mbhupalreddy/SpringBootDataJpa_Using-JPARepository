@@ -7,5 +7,6 @@ import com.nt.entity.Politician;
 public interface IpoliticianService {
 	public String deletepoliticianByIdsBatch(List<Integer> ids);
 	public List<Politician> showPolitionsList(Politician exPolitician,boolean ascOrder,String...prop);
+	public Politician findPoliticianById(Integer id); 
 
 }

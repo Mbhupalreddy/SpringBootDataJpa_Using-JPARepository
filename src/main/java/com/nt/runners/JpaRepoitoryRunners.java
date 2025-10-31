@@ -1,17 +1,24 @@
 package com.nt.runners;
 
 import java.util.List;
-
+import com.nt.service.PoliticianImplService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.nt.entity.Politician;
-import com.nt.service.PoliticianImplService;
+import com.nt.service.IpoliticianService;
+
 @Component
 public class JpaRepoitoryRunners implements CommandLineRunner {
+
+    private final PoliticianImplService politicianImplService;
 	@Autowired
-	 private PoliticianImplService PoliticianImplService;
+	 private IpoliticianService ipoliticianService;
+
+    JpaRepoitoryRunners(PoliticianImplService politicianImplService) {
+        this.politicianImplService = politicianImplService;
+    }
 	@Override
 	public void run(String... args) throws Exception {
 		/*
@@ -19,10 +26,11 @@ public class JpaRepoitoryRunners implements CommandLineRunner {
 			System.out.println(res);
 			*/
 		
-		Politician politician = new Politician();
+	/*	Politician politician = new Politician();
 		politician.setPConstitency("mulugu");
-		PoliticianImplService.showPolitionsList(politician, false, "page").forEach(System.out::println);
-
+		ipoliticianService.showPolitionsList(politician, false, "page").forEach(System.out::println);
+		*/
+		System.out.println(ipoliticianService.findPoliticianById(106));
 	}
 
 }
